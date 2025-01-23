@@ -14,7 +14,7 @@ namespace AppCodeCoverage
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddDbContext<SchoolContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddDbContext<SchoolContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(Mapper)));
 

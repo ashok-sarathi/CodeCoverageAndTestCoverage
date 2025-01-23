@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AppBusiness.Test.Facts
 {
-    public class StudentServiceTest
+    public class DepartmentServiceTest
     {
 
         [Fact]
@@ -20,7 +20,7 @@ namespace AppBusiness.Test.Facts
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Student, StudentModel>().ReverseMap();
+                cfg.CreateMap<Department, DepartmentModel>().ReverseMap();
             });
             var mapper = config.CreateMapper();
 
@@ -28,24 +28,22 @@ namespace AppBusiness.Test.Facts
                 .UseNpgsql("Server=localhost;Port=1;Database=myDataBase;User Id=postgres;Password=postgres;")
                 .Options;
 
-            StudentService service = new StudentService(new SchoolContext(contextOptions), mapper);
+            DepartmentService service = new DepartmentService(new SchoolContext(contextOptions), mapper);
 
             var fullData = service.Get();
             var oldDataCout = fullData.Count();
 
-            var student1 = new StudentModel()
+            var Department1 = new DepartmentModel()
             {
-                Name = "",
-                Age = 21,
-                DepartmentId = 1
+                Name = ""
             };
 
-            service.Add(student1);
+            service.Add(Department1);
             var fullDataAfterDataInsert = service.Get();
             var newDataCout = fullDataAfterDataInsert.Count();
 
             Assert.True(oldDataCout < newDataCout);
-            Assert.False(!fullDataAfterDataInsert.Any(p => p.DepartmentName != null));
+            Assert.False(!fullDataAfterDataInsert.Any(p => p.Students.Any()));
         }
     }
 }

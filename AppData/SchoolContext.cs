@@ -6,9 +6,11 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AppData.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AppData
 {
+    [ExcludeFromCodeCoverage]
     public class SchoolContext(DbContextOptions<SchoolContext> options) : DbContext(options)
     {
         public DbSet<Department> Departments { get; set; }

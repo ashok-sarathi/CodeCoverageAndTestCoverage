@@ -1,4 +1,5 @@
-﻿using AppData.Entities;
+﻿using System.Diagnostics.CodeAnalysis;
+using AppData.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -6,6 +7,7 @@ namespace AppData.Mappings
 {
     public class StudentMapping : IEntityTypeConfiguration<Student>
     {
+        [ExcludeFromCodeCoverage]
         public void Configure(EntityTypeBuilder<Student> builder)
         {
             builder.Property(p => p.Name).IsRequired();

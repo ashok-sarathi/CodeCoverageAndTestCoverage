@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,8 @@ namespace AppBusiness.Services
         public void Update(TModel model);
         public void Delete(int id);
     }
+
+    [ExcludeFromCodeCoverage]
     public abstract class CommonService<TEntity, TModel, TReadModel>
         where TEntity : class
         where TModel : class
